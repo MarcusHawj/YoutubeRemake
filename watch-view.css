@@ -9,6 +9,15 @@
 .watch-channel-row { display: flex; align-items: center; gap: 11px; min-height: 42px; color: #eee; font-size: 14px; }
 .watch-channel-avatar { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 700; }
 .watch-views { margin-left: auto; color: #aaa; font-size: 13px; }
+.watch-reactions { margin: 0 0 14px; }
+.reaction-controls { display: inline-flex; align-items: center; overflow: hidden; border-radius: 22px; background: #272727; }
+.reaction-button { min-width: 78px; height: 38px; padding: 0 13px; display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 0; background: transparent; color: #eee; font-size: 13px; cursor: pointer; transition: background .15s ease, color .15s ease; }
+.reaction-button + .reaction-button { border-left: 1px solid #444; }
+.reaction-button:hover { background: #393939; }
+.reaction-button.selected { color: #ff7777; background: #3a2828; }
+.reaction-button:focus-visible { outline: 2px solid #ff7777; outline-offset: -3px; }
+.reaction-icon { font-size: 16px; }
+.reaction-count { font-variant-numeric: tabular-nums; }
 .watch-recommendations { display: grid; gap: 12px; min-width: 0; }
 .watch-recommendations h2 { margin: 0 0 3px; font: 600 17px 'Outfit', sans-serif; }
 .watch-recommendation { display: grid; grid-template-columns: 152px minmax(0, 1fr); gap: 10px; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
