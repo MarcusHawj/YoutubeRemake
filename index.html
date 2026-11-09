@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="description" content="Discover videos, creators, and music on YoutubeRemake.">
+  <title>YoutubeRemake</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Toggle navigation" aria-expanded="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <a class="brand" href="#home" aria-label="YoutubeRemake home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6.8v10.4L18 12 9 6.8Z"/></svg></span>
+      <span class="brand-name">YouTube<span>Remake</span></span>
+    </a>
+
+    <form class="search-form" id="searchForm" role="search">
+      <label class="visually-hidden" for="searchInput">Search videos</label>
+      <input id="searchInput" type="search" placeholder="Search" autocomplete="off">
+      <button class="search-button" type="submit" aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+      </button>
+    </form>
+    <button class="icon-button voice-button" type="button" aria-label="Voice search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"/></svg>
+    </button>
+    <div class="topbar-actions">
+      <button class="icon-button" type="button" aria-label="Create video"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3M9.5 9.5v5m-2.5-2.5h5"/></svg></button>
+      <button class="icon-button notification-button" type="button" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4"/></svg><span class="notification-dot"></span></button>
+      <button class="avatar" type="button" aria-label="Your account">M</button>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <nav class="primary-nav">
+      <a class="nav-link active" href="#home" data-category="All"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/></svg><span>Home</span></a>
+      <a class="nav-link" href="#trending" data-category="Trending"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2.5c.8 4-2.2 4.6-1.6 7.2.3 1.2 1.2 1.8 2.2 1.8 1.7 0 2.9-1.7 2.5-4.1 3.2 2.3 5.1 5.3 4.2 9a9 9 0 0 1-17.7-2.2c0-3.1 1.6-6 4.3-7.9-.3 2.3.8 3.4 1.8 3.4 2.1 0 1.1-4.7 4.3-7.2Z"/></svg><span>Trending</span></a>
+      <a class="nav-link" href="#subscriptions" data-category="Subscriptions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v13H4zM8 21h8M8 9h8m-8 4h5"/><path d="m10 3 2-2 2 2"/></svg><span>Subscriptions</span></a>
+    </nav>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-note"><span class="note-icon">✦</span><p>Your next favorite video is just a click away.</p></div>
+    <div class="sidebar-footer">About&nbsp; · &nbsp;Creators<br>Terms&nbsp; · &nbsp;Privacy<br><span>© 2025 YoutubeRemake</span></div>
+  </aside>
+
+  <main class="main-content" id="mainContent">
+    <div class="category-bar" aria-label="Video categories">
+      <button class="category-chip selected" type="button" data-topic="All">All</button>
+      <button class="category-chip" type="button" data-topic="Music">Music</button>
+      <button class="category-chip" type="button" data-topic="Design">Design</button>
+      <button class="category-chip" type="button" data-topic="Technology">Technology</button>
+      <button class="category-chip" type="button" data-topic="Travel">Travel</button>
+      <button class="category-chip" type="button" data-topic="Gaming">Gaming</button>
+      <button class="category-chip" type="button" data-topic="Cooking">Cooking</button>
+      <button class="category-chip" type="button" data-topic="Live">Live</button>
+      <button class="category-chip" type="button" data-topic="Podcasts">Podcasts</button>
+    </div>
+    <section class="video-section" aria-labelledby="sectionTitle">
+      <div class="section-heading"><div><p class="eyebrow">A little inspiration for your day</p><h1 id="sectionTitle">Recommended</h1></div><span class="video-count" id="videoCount"></span></div>
+      <div class="video-grid" id="videoGrid" aria-live="polite"></div>
+      <p class="empty-state" id="emptyState" hidden>No videos found. Try a different search or category.</p>
+    </section>
+  </main>
+</body>
+</html>
