@@ -5,6 +5,7 @@ const homeSections = [
 ];
 let currentVideoCard = null;
 const reactionByTitle = new Map();
+const commentsByTitle = new Map();
 
 function cardDetails(card) {
   return {
@@ -74,6 +75,81 @@ function renderReactions(container, videoTitle) {
     })
   );
   container.replaceChildren(controls);
+}
+
+function getComments(videoTitle) {
+  if (!commentsByTitle.has(videoTitle)) commentsByTitle.set(videoTitle, []);
+  return commentsByTitle.get(videoTitle);
+}
+
+function renderComments(container, videoTitle) {
+  const comments = getComments(videoTitle);
+  container.replaceChildren();
+
+  const heading = document.createElement('h2');
+  heading.className = 'comments-heading';
+  heading.textContent = `Comments (${comments.length})`;
+
+  const form = document.createElement('form');
+  form.className = 'comment-form';
+  const input = document.createElement('textarea');
+  input.className = 'comment-input';
+  input.name = 'comment';
+  input.rows = 2;
+  input.maxLength = 500;
+  input.placeholder = 'Add a comment...';
+  input.setAttribute('aria-label', 'Write a comment');
+  input.required = true;
+  const formActions = document.createElement('div');
+  formActions.className = 'comment-form-actions';
+  const submit = document.createElement('button');
+  submit.className = 'comment-submit';
+  submit.type = 'submit';
+  submit.textContent = 'Comment';
+  formActions.append(submit);
+  form.append(input, formActions);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    comments.unshift({ author: 'You', text, createdAt: new Date() });
+    renderComments(container, videoTitle);
+    container.querySelector('.comment-input')?.focus();
+  });
+
+  const list = document.createElement('div');
+  list.className = 'comment-list';
+  if (comments.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'comments-empty';
+    empty.textContent = 'Be the first to share your thoughts.';
+    list.append(empty);
+  } else {
+    comments.forEach((comment) => {
+      const item = document.createElement('article');
+      item.className = 'comment-item';
+      const avatar = document.createElement('span');
+      avatar.className = 'comment-avatar';
+      avatar.setAttribute('aria-hidden', 'true');
+      avatar.textContent = comment.author.slice(0, 1).toUpperCase();
+      const body = document.createElement('div');
+      body.className = 'comment-body';
+      const byline = document.createElement('p');
+      byline.className = 'comment-byline';
+      const author = document.createElement('strong');
+      author.textContent = comment.author;
+      const time = document.createElement('span');
+      time.textContent = comment.createdAt.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      byline.append(author, time);
+      const text = document.createElement('p');
+      text.className = 'comment-text';
+      text.textContent = comment.text;
+      body.append(byline, text);
+      item.append(avatar, body);
+      list.append(item);
+    });
+  }
+  container.append(heading, form, list);
 }
 
 function makeRecommendation(card) {
@@ -147,7 +223,12 @@ function showWatchView(card) {
   viewCount.className = 'watch-views';
   viewCount.textContent = video.views;
   channelRow.append(avatar, channelName, viewCount);
-  playerColumn.append(player, title, reactions, channelRow);
+
+  const comments = document.createElement('section');
+  comments.className = 'watch-comments';
+  comments.setAttribute('aria-label', 'Comments');
+  renderComments(comments, video.title);
+  playerColumn.append(player, title, reactions, channelRow, comments);
 
   const recommendations = document.createElement('aside');
   recommendations.className = 'watch-recommendations';

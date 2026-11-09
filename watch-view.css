@@ -18,6 +18,23 @@
 .reaction-button:focus-visible { outline: 2px solid #ff7777; outline-offset: -3px; }
 .reaction-icon { font-size: 16px; }
 .reaction-count { font-variant-numeric: tabular-nums; }
+.watch-comments { margin-top: 26px; max-width: 760px; }
+.comments-heading { margin: 0 0 18px; font: 600 18px 'Outfit', sans-serif; }
+.comment-form { display: grid; gap: 10px; margin-bottom: 24px; }
+.comment-input { display: block; width: 100%; min-height: 54px; resize: vertical; border: 0; border-bottom: 1px solid #555; padding: 10px 0; background: transparent; color: #f1f1f1; font: inherit; font-size: 14px; outline: none; }
+.comment-input:focus { border-bottom: 2px solid #eee; }
+.comment-input::placeholder { color: #999; }
+.comment-form-actions { display: flex; justify-content: flex-end; }
+.comment-submit { border: 0; border-radius: 20px; padding: 9px 16px; background: #f1f1f1; color: #111; font-size: 13px; font-weight: 600; cursor: pointer; }
+.comment-submit:hover { background: #d7d7d7; }
+.comment-list { display: grid; gap: 20px; }
+.comments-empty { margin: 0; color: #999; font-size: 13px; }
+.comment-item { display: flex; align-items: flex-start; gap: 12px; }
+.comment-avatar { width: 36px; height: 36px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg,#ef987f,#a84962); color: #fff; font-size: 13px; font-weight: 700; }
+.comment-body { min-width: 0; }
+.comment-byline { display: flex; align-items: baseline; gap: 8px; margin: 0 0 5px; font-size: 12px; }
+.comment-byline span { color: #888; font-size: 11px; }
+.comment-text { margin: 0; color: #e5e5e5; font-size: 13px; line-height: 1.55; overflow-wrap: anywhere; white-space: pre-wrap; }
 .watch-recommendations { display: grid; gap: 12px; min-width: 0; }
 .watch-recommendations h2 { margin: 0 0 3px; font: 600 17px 'Outfit', sans-serif; }
 .watch-recommendation { display: grid; grid-template-columns: 152px minmax(0, 1fr); gap: 10px; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
