@@ -7,9 +7,7 @@
   <meta name="description" content="Discover videos, creators, and music on YoutubeRemake.">
   <title>YoutubeRemake</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="watch-view.css">
   <script src="script.js" defer></script>
-  <script src="watch-view.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -20,19 +18,14 @@
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6.8v10.4L18 12 9 6.8Z"/></svg></span>
       <span class="brand-name">YouTube<span>Remake</span></span>
     </a>
-
     <form class="search-form" id="searchForm" role="search">
-      <label class="visually-hidden" for="searchInput">Search videos</label>
+      <label class="visually-hidden" for="searchInput">Search videos by title</label>
       <input id="searchInput" type="search" placeholder="Search" autocomplete="off">
       <button class="search-button" type="submit" aria-label="Search">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
       </button>
     </form>
-    <button class="icon-button voice-button" type="button" aria-label="Voice search">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"/></svg>
-    </button>
     <div class="topbar-actions">
-      <button class="icon-button" type="button" aria-label="Create video"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3M9.5 9.5v5m-2.5-2.5h5"/></svg></button>
       <button class="icon-button notification-button" type="button" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4"/></svg><span class="notification-dot"></span></button>
       <button class="avatar" type="button" aria-label="Your account">M</button>
     </div>
@@ -62,11 +55,14 @@
       <button class="category-chip" type="button" data-topic="Podcasts">Podcasts</button>
     </div>
     <section class="video-section" aria-labelledby="sectionTitle">
-      <div class="section-heading"><div><p class="eyebrow">A little inspiration for your day</p><h1 id="sectionTitle">Recommended</h1></div><span class="video-count" id="videoCount"></span></div>
+      <div class="section-heading">
+        <div><p class="eyebrow">A little inspiration for your day</p><h1 id="sectionTitle">Recommended</h1></div>
+        <span class="video-count" id="videoCount"></span>
+      </div>
       <div class="video-grid" id="videoGrid" aria-live="polite"></div>
-      <p class="empty-state" id="emptyState" hidden>No videos found. Try a different search or category.</p>
+      <p class="empty-state" id="emptyState" hidden>No videos found. Try a different title or category.</p>
     </section>
-    <section class="watch-view" id="watchView" aria-label="Video watch view" hidden></section>
+    <section class="watch-view" id="watchView" aria-label="Video watch view" tabindex="-1" hidden></section>
   </main>
 </body>
 </html>
