@@ -23,10 +23,11 @@ let activeCategory = 'All';
 let searchTerm = '';
 
 function renderVideos() {
+  const normalizedSearchTerm = searchTerm.toLocaleLowerCase();
   const filtered = videos.filter((video) => {
     const matchesCategory = activeCategory === 'All' || activeCategory === 'Trending' || activeCategory === 'Subscriptions' || video.category === activeCategory;
-    const haystack = `${video.title} ${video.channel} ${video.category}`.toLowerCase();
-    return matchesCategory && haystack.includes(searchTerm.toLowerCase());
+    const matchesTitle = video.title.toLocaleLowerCase().includes(normalizedSearchTerm);
+    return matchesCategory && matchesTitle;
   });
 
   grid.innerHTML = filtered.map((video) => `
