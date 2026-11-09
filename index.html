@@ -7,7 +7,9 @@
   <meta name="description" content="Discover videos, creators, and music on YoutubeRemake.">
   <title>YoutubeRemake</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="watch-view.css">
   <script src="script.js" defer></script>
+  <script src="watch-view.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -64,6 +66,7 @@
       <div class="video-grid" id="videoGrid" aria-live="polite"></div>
       <p class="empty-state" id="emptyState" hidden>No videos found. Try a different search or category.</p>
     </section>
+    <section class="watch-view" id="watchView" aria-label="Video watch view" hidden></section>
   </main>
 </body>
 </html>
