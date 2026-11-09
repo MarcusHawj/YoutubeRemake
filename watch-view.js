@@ -4,6 +4,7 @@ const homeSections = [
   document.querySelector('.video-section')
 ];
 let currentVideoCard = null;
+const reactionByTitle = new Map();
 
 function cardDetails(card) {
   return {
@@ -14,6 +15,65 @@ function cardDetails(card) {
     avatar: card.querySelector('.channel-avatar')?.textContent.trim() || 'YR',
     avatarColor: card.querySelector('.channel-avatar')?.style.background || '#555'
   };
+}
+
+function getReaction(videoTitle) {
+  if (!reactionByTitle.has(videoTitle)) {
+    reactionByTitle.set(videoTitle, { likes: 0, dislikes: 0, selected: null });
+  }
+  return reactionByTitle.get(videoTitle);
+}
+
+function makeReactionButton(label, symbol, count, selected, onClick) {
+  const button = document.createElement('button');
+  button.className = `reaction-button${selected ? ' selected' : ''}`;
+  button.type = 'button';
+  button.setAttribute('aria-label', `${label}: ${count}`);
+  button.setAttribute('aria-pressed', String(selected));
+
+  const icon = document.createElement('span');
+  icon.className = 'reaction-icon';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = symbol;
+  const countLabel = document.createElement('span');
+  countLabel.className = 'reaction-count';
+  countLabel.textContent = count.toLocaleString();
+  button.append(icon, countLabel);
+  button.addEventListener('click', onClick);
+  return button;
+}
+
+function renderReactions(container, videoTitle) {
+  const state = getReaction(videoTitle);
+  const controls = document.createElement('div');
+  controls.className = 'reaction-controls';
+  controls.setAttribute('aria-label', 'Video reactions');
+
+  controls.append(
+    makeReactionButton('Like', '👍', state.likes, state.selected === 'like', () => {
+      if (state.selected === 'like') {
+        state.likes -= 1;
+        state.selected = null;
+      } else {
+        if (state.selected === 'dislike') state.dislikes -= 1;
+        state.likes += 1;
+        state.selected = 'like';
+      }
+      renderReactions(container, videoTitle);
+    }),
+    makeReactionButton('Dislike', '👎', state.dislikes, state.selected === 'dislike', () => {
+      if (state.selected === 'dislike') {
+        state.dislikes -= 1;
+        state.selected = null;
+      } else {
+        if (state.selected === 'like') state.likes -= 1;
+        state.dislikes += 1;
+        state.selected = 'dislike';
+      }
+      renderReactions(container, videoTitle);
+    })
+  );
+  container.replaceChildren(controls);
 }
 
 function makeRecommendation(card) {
@@ -71,6 +131,10 @@ function showWatchView(card) {
   const title = document.createElement('h1');
   title.className = 'watch-title';
   title.textContent = video.title;
+  const reactions = document.createElement('div');
+  reactions.className = 'watch-reactions';
+  renderReactions(reactions, video.title);
+
   const channelRow = document.createElement('div');
   channelRow.className = 'watch-channel-row';
   const avatar = document.createElement('span');
@@ -83,7 +147,7 @@ function showWatchView(card) {
   viewCount.className = 'watch-views';
   viewCount.textContent = video.views;
   channelRow.append(avatar, channelName, viewCount);
-  playerColumn.append(player, title, channelRow);
+  playerColumn.append(player, title, reactions, channelRow);
 
   const recommendations = document.createElement('aside');
   recommendations.className = 'watch-recommendations';
