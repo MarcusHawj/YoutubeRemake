@@ -1,6 +1,6 @@
-# ClipStream
+# YoutubeRemake
 
-ClipStream is a lightweight, responsive video discovery interface built with HTML, CSS, and vanilla JavaScript. Browse a curated video grid, filter by title or category, and open a watch view with an embedded YouTube player and related recommendations.
+YoutubeRemake is a lightweight, responsive video discovery interface built with HTML, CSS, and vanilla JavaScript. Browse a curated video grid, filter by title or category, and open a watch view with an embedded YouTube player and related recommendations.
 
 **Live demo:** [https://marcushawj.github.io/clipstream/](https://marcushawj.github.io/clipstream/)
 
@@ -78,7 +78,7 @@ Thumbnails currently use Unsplash image URLs. Replace the `image` values or upda
 
 - YouTube videos are served by YouTube's embedded player and may have embedding restrictions set by their owners.
 - The Google Fonts and Unsplash images used by the interface require an internet connection.
-- ClipStream is a front-end demo. It does not include user accounts, a database, persistent comments, or a video upload service.
+- YoutubeRemake is a front-end demo. It does not include user accounts, a database, persistent comments, or a video upload service.
 
 ## License
 
